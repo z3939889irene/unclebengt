@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>女力 x 班叔叔好物嚴選 智能入口</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="女力渠道導流至班叔叔好物嚴選 LINE 官方帳號的智能入口頁">
+  <script>
+    function getParam(name) {
+      var params = new URLSearchParams(window.location.search);
+      return params.get(name) || "";
+    }
+    function initPage() {
+      var keyword = getParam("k");
+      document.getElementById("keyword").textContent = keyword || "未指定";
+
+      var mapText = "";
+      switch (keyword) {
+        case "糖鼎黑糖薑母茶":
+          mapText = "女力社群 - 糖鼎";
+          break;
+        case "想要慢慢逛美味蛋捲":
+          mapText = "女力EDM - 隨手瓶 (全口味)";
+          break;
+        case "我只想要有餡蛋捲":
+          mapText = "女力EDM - 隨手瓶 (有餡)";
+          break;
+        case "我只要無餡蛋捲":
+          mapText = "女力EDM - 隨手瓶 (無餡)";
+          break;
+        case "國王的點心百寶盒":
+          mapText = "女力Line@ - 鬍子國王";
+          break;
+        case "生活多點辣更帶勁":
+          mapText = "女力社群 - 金德 + 香菜";
+          break;
+        case "隨時來點不採雷的微甜幸福":
+          mapText = "女力IG短影音 - 隨手瓶 (有餡)";
+          break;
+        default:
+          mapText = "未對應的來源或直接進入";
+      }
+      document.getElementById("source").textContent = mapText;
+      document.getElementById("line-link").href = "https://line.me/R/ti/p/@783wnbep";
+    }
+    window.addEventListener("DOMContentLoaded", initPage);
+  </script>
+</head>
+<body>
+  <div>來源關鍵字：<span id="keyword">載入中…</span></div>
+  <div>來源判定：<span id="source">分析中…</span></div>
+  <a id="line-link" href="#">前往 LINE</a>
+</body>
+</html>
