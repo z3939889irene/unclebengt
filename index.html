@@ -1,54 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>女力 x 班叔叔好物嚴選 智能入口</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="女力渠道導流至班叔叔好物嚴選 LINE 官方帳號的智能入口頁">
-  <script>
-    function getParam(name) {
-      var params = new URLSearchParams(window.location.search);
-      return params.get(name) || "";
-    }
-    function initPage() {
-      var keyword = getParam("k");
-      document.getElementById("keyword").textContent = keyword || "未指定";
-
-      var mapText = "";
-      switch (keyword) {
-        case "糖鼎黑糖薑母茶":
-          mapText = "女力社群 - 糖鼎";
-          break;
-        case "想要慢慢逛美味蛋捲":
-          mapText = "女力EDM - 隨手瓶 (全口味)";
-          break;
-        case "我只想要有餡蛋捲":
-          mapText = "女力EDM - 隨手瓶 (有餡)";
-          break;
-        case "我只要無餡蛋捲":
-          mapText = "女力EDM - 隨手瓶 (無餡)";
-          break;
-        case "國王的點心百寶盒":
-          mapText = "女力Line@ - 鬍子國王";
-          break;
-        case "生活多點辣更帶勁":
-          mapText = "女力社群 - 金德 + 香菜";
-          break;
-        case "隨時來點不採雷的微甜幸福":
-          mapText = "女力IG短影音 - 隨手瓶 (有餡)";
-          break;
-        default:
-          mapText = "未對應的來源或直接進入";
-      }
-      document.getElementById("source").textContent = mapText;
-      document.getElementById("line-link").href = "https://line.me/R/ti/p/@783wnbep";
-    }
-    window.addEventListener("DOMContentLoaded", initPage);
-  </script>
+<meta charset="UTF-8">
+<title>加入官方帳號・預約專人諮詢</title>
 </head>
 <body>
-  <div>來源關鍵字：<span id="keyword">載入中…</span></div>
-  <div>來源判定：<span id="source">分析中…</span></div>
-  <a id="line-link" href="#">前往 LINE</a>
+<script>
+const params = new URL(window.location.href);
+let k = params.searchParams.get('k') || '加入官方帳號';
+let encodedKeyword = encodeURIComponent(k);
+let lineId = '@783wnbep';
+let encodedLineId = encodeURIComponent(lineId);
+let oaUrl = 'https://line.me/R/oaMessage/' + encodedLineId + '/?' + encodedKeyword;
+let isMobile = /iPhone|Android|iPad|Mobile/i.test(navigator.userAgent);
+document.write('<p>本次關鍵字：' + k + '</p>');
+if (isMobile) {
+    document.write('<button style="background:#06C755;color:#fff;padding:15px 20px;border:none;border-radius:8px;font-size:18px;" onclick="location.href=\'' + oaUrl + '\'">點擊進入官方Line@諮詢專人或進一步了解更多</button>');
+} else {
+    let qr = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(oaUrl);
+    document.write('<img src="' + qr + '" width="300" /><p>請使用手機 LINE 掃描下方 QR 諮詢專人或進一步了解更多</p>');
+}
+</script>
 </body>
 </html>
